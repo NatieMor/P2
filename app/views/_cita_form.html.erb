@@ -1,0 +1,39 @@
+<%= form_with(model: citum, local: true, html: { class: "form" }) do |form| %>
+    <% if citum.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(citum.errors.count, "error") %> impidieron guardar esta cita:</h2>
+        <ul>
+          <% citum.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mb-3">
+      <%= form.label :fecha, class: "form-label" %>
+      <%= form.date_field :fecha, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :hora, class: "form-label" %>
+      <%= form.time_field :hora, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :duracion, class: "form-label" %>
+      <%= form.number_field :duracion, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :veterinario_id, class: "form-label" %>
+      <%= form.select :veterinario_id, options_from_collection_for_select(@veterinarios, :id, :nombre),{}, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :mascota_id, class: "form-label" %>
+      <%= form.select :mascota_id, options_from_collection_for_select(@mascotas, :id, :nombre),{}, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :estado, class: "form-label" %>
+      <%= form.select :estado, ["pendiente", "completada", "cancelada"],{}, class: "form-control" %>
+    </div>
+    <div>
+      <%= form.submit "Guardar", class: "btn btn-primary" %>
+    </div>
+  <% end %>

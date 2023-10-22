@@ -1,0 +1,43 @@
+<h2 class="text-center"> Editar usuario <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Esperando por confirmación: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contraseña %> <i>(dejalo en blanco si no lo quieres cambiar)</i><br />
+    <%= f.password_field :password, autocomplete: "Nueva contraseña" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> Minimo de carracteres</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirmación %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "nueva contraseña" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contraseña_Actual %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "Contraseña Actual" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar" %>
+  </div>
+<% end %>
+
+<h3>Cancelar mi cuenta </h3>
+
+<div>Desconforme? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= link_to "Regresar", :back %>

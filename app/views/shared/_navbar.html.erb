@@ -1,0 +1,135 @@
+<header class="text-dark text-center py-4">
+  <p>Tu mejor opción</p>
+</header>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/">REPECHAJE</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="" aria-current="page">Inicio <span
+              class="visually-hidden">(current)</span></a>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="">welcome</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href=""> Citas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Mascotas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Administración</a>
+          </li>
+          <%end%>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <% if user_signed_in? %>
+                  <%= current_user.email%>
+                    <%else%>
+                      Opciones
+                      <%end%>
+              </a>
+              <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                  <li>
+                    <%= button_to 'Cerrar sesión' , destroy_user_session_path, class: 'dropdown-item' , method: :delete
+                      %>
+                  </li>
+                  <%else%>
+                    <li>
+                      <%= link_to 'Iniciar sesión' , new_user_session_path, class: 'dropdown-item' %>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                      <%= link_to 'Registro' , new_user_registration_path, class: 'dropdown-item' %>
+                    </li>
+                    <%end%>
+              </ul>
+            </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<% if notice.present? %>
+  <p class="notice alert alert-warning" role="alert">
+    <%= notice %>
+  </p>
+  <% end %>
+
+    <!--
+--ejemplo de adolfo
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <div class="container">
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="/" aria-current="page">Inicio <span class="visually-hidden">(current)</span></a>
+        </li>
+
+        
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Mascotas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/>Veterinarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Citas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Servicios</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.full_name %></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="#">Editar</a>
+              <hr>
+              <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <% if user_signed_in? %>
+      <% end %>
+      
+    </div>
+  </div>
+</nav>
+-->
+    <% if notice.present? %>
+      <p class="notice alert alert-warning" role="alert">
+        <%= notice %>
+      </p>
+      <% end %>
+
+        <% if alert.present? %>
+          <p class="notice alert alert-danger" role="alert">
+            <%= alert %>
+          </p>
+          <% end %>

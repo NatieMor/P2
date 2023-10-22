@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Columna para el listado de mascotas -->
+    <div class="col-md-6">
+      <h2>Mascotas Disponibles para Citas</h2>
+      <% @mascotas.each do |mascota|%>
+        <div class="card mt-3">
+          <div class="card-body">
+            <h3><%= mascota.nombre %></h3>
+            <p>Especie: <%= mascota.especie %></p>
+            <p>Raza: <%= mascota.raza %></p>
+            <p>Dueño: <%= mascota.cliente.nombre %></p>
+          </div>
+        </div>
+      <% end %>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+    <!-- Columna para el formulario de citas -->
+    <div class="col-md-6">
+      <h2>Programar Nueva Cita</h2>
+      <div class="card">
+        <div class="card-body">
+          <%= form_with(model: @citum, local: true, estado: "cancelado", html: { class: "form" }) do |form| %>
+            <div class="mb-3">
+              <%= form.label :fecha, class: "form-label" %>
+              <%= form.date_field :fecha, class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :hora, class: "form-label" %>
+              <%= form.time_field :hora, class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :duracion, class: "form-label" %>
+              <%= form.number_field :duracion, class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :veterinario_id, class: "form-label" %>
+              <%= form.select :veterinario_id, options_from_collection_for_select(@veterinarios, :id, :nombre),{}, class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :mascota_id, class: "form-label" %>
+              <%= form.select :mascota_id, options_from_collection_for_select(@mascotas, :id, :nombre),{}, class: "form-control" %>
+            </div>
+            <div>
+              <%= form.submit "Guardar", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
