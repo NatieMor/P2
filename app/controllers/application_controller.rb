@@ -9,7 +9,7 @@ protected
     end
 
     def after_sign_in_path_for(resource)
-        root_path # esta es la ruta donde redireccionaremos en caso de
+        root_path # esta es la ruta donde redireccionaremos
     end
 
 #app/controllers/application_controller.rb
